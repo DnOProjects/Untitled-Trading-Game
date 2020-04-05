@@ -1,0 +1,16 @@
+Possible Mechanics:
+- base building?
+- resource management (iron, rice, currencies)
+- exploration (country-scale?, world-scale?, space?)
+- trading
+- events (earthquakes, strikes, ...)
+
+Coding Plan:
+- particle manager
+- assets manager
+- class system
+
+Coding Docs:
+- shaders:
+  - love2d-specific https://love2d.org/wiki/Tutorial:Introduction_to_Shaders
+  - general https://thebookofshaders.com/02/
