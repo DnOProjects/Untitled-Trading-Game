@@ -20,9 +20,7 @@ end
 
 function initUI()
 	addBackgroundImage({1, 2}, images.shipBackground)
-	for i = 1, 2 do
-		addPrint(i, "Tropical Trader", 0, 50, 1920, 100, 0, 0.1, 0.15, 1, "center")
-	end
+	addPrint({1, 2}, "Tropical Trader", 0, 50, 1920, 100, 0, 0.1, 0.15, 1, "center")
 
 	addButton(1, "inGame", "Play", 200, 250, 500, 140, 70, 0.1, 0.1, 0.1, 0.8)
 	addButton(1, 2, "Options", 200, 450, 500, 140, 70, 0.1, 0.1, 0.1, 0.8)
@@ -46,8 +44,8 @@ function addSlider(page, text, x, y, width, height, textSize, r, g, b, a, value,
 	sliders[#sliders+1] = {page = page, text = text, x = x, y = y, width = width, height = height, textSize = textSize, color = {r, g, b, a}, value = value, sliderWidth = sliderWidth, sliderHeight = sliderHeight}
 end
 
-function addPrint(page, text, x, y, limit, textSize, r, g, b, a, align)
-	prints[#prints+1] = {page = page, text = text, x = x, y = y, limit = limit, textSize = textSize, color = {r, g, b, a}, align = align}
+function addPrint(pages, text, x, y, limit, textSize, r, g, b, a, align)
+	prints[#prints+1] = {pages = pages, text = text, x = x, y = y, limit = limit, textSize = textSize, color = {r, g, b, a}, align = align}
 end
 
 -- Updates
@@ -144,7 +142,7 @@ end
 
 function drawPrints()
 	for i, printText in pairs(prints) do
-		if (printText.page == currentPage) then
+		if (logic.inList(currentPage, printText.pages)) then
 			love.graphics.setFont(love.graphics.newFont(printText.textSize))
 			love.graphics.setColor(printText.color)
 			love.graphics.printf(printText.text, printText.x, printText.y, printText.limit, printText.align)
