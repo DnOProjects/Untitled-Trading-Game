@@ -22,12 +22,12 @@ function initUI()
 	addBackgroundImage({1, 2}, images.shipBackground)
 	addPrint({1, 2}, "Tropical Trader", 0, 50, 1920, 100, 0, 0.1, 0.15, 1, "center")
 
-	addButton(1, "inGame", "Play", 200, 250, 500, 140, 70, 0.1, 0.1, 0.1, 0.8)
-	addButton(1, 2, "Options", 200, 450, 500, 140, 70, 0.1, 0.1, 0.1, 0.8)
-	addButton(1, "exit", "Exit", 200, 650, 500, 140, 70, 0.1, 0.1, 0.1, 0.8)
+	addButton(1, "inGame", "Play", 200, 250, 500, 140, 70, 0.1, 0.1, 0.1, 0.6)
+	addButton(1, 2, "Options", 200, 450, 500, 140, 70, 0.1, 0.1, 0.1, 0.6)
+	addButton(1, "exit", "Exit", 200, 650, 500, 140, 70, 0.1, 0.1, 0.1, 0.6)
 
-	addSlider(2, "Master", 200, 250, 500, 140, 70, 0.1, 0.1, 0.1, 0.8, volume, 6, 11)
-	addButton(2, 1, "Back", 200, 650, 500, 140, 70, 0.1, 0.1, 0.1, 0.8)
+	addSlider(2, "Master", 200, 250, 500, 140, 70, 0.1, 0.1, 0.1, 0.6, volume, 6, 11)
+	addButton(2, 1, "Back", 200, 650, 500, 140, 70, 0.1, 0.1, 0.1, 0.6)
 end
 
 function addBackgroundImage(pages, image)
@@ -119,7 +119,7 @@ function drawButtons()
 				love.graphics.setColor(button.color[1] - button.color[1]/4, button.color[2] - button.color[2]/4, button.color[3] - button.color[3]/4, button.color[4] - button.color[4]/4)
 			end
 			love.graphics.rectangle("fill", button.x, button.y, button.width, button.height)
-			love.graphics.setColor(1, 1, 1)
+			love.graphics.setColor(1, 1, 1, 0.95)
 			love.graphics.setFont(love.graphics.newFont(button.textSize))
 			love.graphics.printf(button.text, button.x, button.y + (button.height/2) - (button.textSize/1.8), button.width, "center")
 		end
