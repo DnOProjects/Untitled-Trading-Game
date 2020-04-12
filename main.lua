@@ -1,5 +1,6 @@
 -- Requires
 local ui = require "src/ui"
+local images = require "src/images"
 
 -- Loads
 function love.load()
@@ -11,6 +12,8 @@ function love.load()
 	end
 	xPadding = (love.graphics.getWidth() - (1920 * gameRenderScale)) / 2
 	yPadding = (love.graphics.getHeight() - (1080 * gameRenderScale)) / 2
+
+	images.load()
 	ui.load()
 end
 
@@ -27,9 +30,13 @@ end
 -- Drawing
 function love.draw()
 	love.graphics.push()
+	love.graphics.scale(love.graphics.getHeight()/1080)
+	ui.drawBackgrounds()
+	love.graphics.pop()
+	
+	love.graphics.push()
 	love.graphics.scale(gameRenderScale)
 	love.graphics.translate(xPadding, yPadding)
-	love.graphics.setBackgroundColor(0, 0, 1)
 	ui.draw()
 	if currentPage == "inGame" then
 		print("TODO In-game")

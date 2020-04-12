@@ -2,12 +2,14 @@ local ui = {}
 
 -- Requires
 local logic = require "src/logic"
+local images = require "src/images"
 
 -- Loads
 function ui.load()
 	volume = 100
 
 	currentPage = 1
+	backgrounds = {}
 	buttons = {}
 	sliders = {}
 	prints = {}
@@ -17,8 +19,9 @@ function ui.load()
 end
 
 function initUI()
+	addBackgroundImage({1, 2}, images.shipBackground)
 	for i = 1, 2 do
-		addPrint(i, "Tropical Trader", 0, 50, 1920, 100, 1, 1, 1, 1, "center")
+		addPrint(i, "Tropical Trader", 0, 50, 1920, 100, 0, 0.1, 0.15, 1, "center")
 	end
 
 	addButton(1, "inGame", "Play", 200, 250, 500, 140, 70, 0.1, 0.1, 0.1, 0.8)
@@ -27,6 +30,10 @@ function initUI()
 
 	addSlider(2, "Master", 200, 250, 500, 140, 70, 0.1, 0.1, 0.1, 0.8, volume, 6, 11)
 	addButton(2, 1, "Back", 200, 650, 500, 140, 70, 0.1, 0.1, 0.1, 0.8)
+end
+
+function addBackgroundImage(pages, image)
+	backgrounds[#backgrounds+1] = {pages = pages, image = image}
 end
 
 function addButton(page, pageToGo, text, x, y, width, height, textSize, r, g, b, a)
@@ -97,6 +104,14 @@ function ui.draw()
 	drawPrints()
 end
 
+function ui.drawBackgrounds()
+	for i, background in pairs(backgrounds) do
+		if (logic.inList(currentPage, background.pages)) then
+			love.graphics.draw(background.image)
+		end
+	end
+end
+
 function drawButtons()
 	for i, button in pairs(buttons) do
 	    if (button.page == currentPage) then
@@ -133,6 +148,7 @@ function drawPrints()
 			love.graphics.setFont(love.graphics.newFont(printText.textSize))
 			love.graphics.setColor(printText.color)
 			love.graphics.printf(printText.text, printText.x, printText.y, printText.limit, printText.align)
+			love.graphics.setColor(1, 1, 1)
 		end
 	end
 end
