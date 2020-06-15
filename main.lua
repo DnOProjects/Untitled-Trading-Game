@@ -1,6 +1,5 @@
 -- Requires
 local ui = require "src/ui"
-local images = require "src/images"
 
 -- Loads
 function love.load()
@@ -13,7 +12,6 @@ function love.load()
 	xPadding = (love.graphics.getWidth() - (1920 * gameRenderScale)) / 2
 	yPadding = (love.graphics.getHeight() - (1080 * gameRenderScale)) / 2
 
-	images.load()
 	ui.load()
 end
 
